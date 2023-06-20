@@ -256,6 +256,214 @@
         }
       }
     },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/licenseProfile": {
+      "put": {
+        "tags": [
+          "licenseProfile"
+        ],
+        "operationId": "LicenseProfile_CreateOrUpdate",
+        "description": "The operation to create or update a license profile. Please note some properties can be set only during the creation.",
+        "parameters": [
+          {
+            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "name": "machineName",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "pattern": "[a-zA-Z0-9-_\\.]",
+            "minLength": 1,
+            "maxLength": 54,
+            "description": "The name of the hybrid machine."
+          },
+          {
+            "name": "parameters",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LicenseProfile"
+            },
+            "description": "Parameters supplied to the Create license profile operation."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/LicenseProfile"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Create or Update a License Profile": {
+            "$ref": "./examples/licenseProfile/LicenseProfile_CreateOrUpdate.json"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "licenseProfile"
+        ],
+        "operationId": "LicenseProfile_Update",
+        "description": "The operation to update a license profile.",
+        "parameters": [
+          {
+            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "name": "machineName",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "pattern": "[a-zA-Z0-9-_\\.]",
+            "minLength": 1,
+            "maxLength": 54,
+            "description": "The name of the hybrid machine."
+          },
+          {
+            "name": "parameters",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LicenseProfileUpdate"
+            },
+            "description": "Parameters supplied to the Update license profile operation."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/LicenseProfile"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Update a Machine": {
+            "$ref": "./examples/licenseProfile/LicenseProfile_Update.json"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "licenseProfile"
+        ],
+        "operationId": "LicenseProfile_Delete",
+        "description": "The operation to delete a license profile.",
+        "parameters": [
+          {
+            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "name": "machineName",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "pattern": "[a-zA-Z0-9-_\\.]",
+            "minLength": 1,
+            "maxLength": 54,
+            "description": "The name of the hybrid machine."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Delete a Machine": {
+            "$ref": "./examples/licenseProfile/LicenseProfile_Delete.json"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "licenseProfile"
+        ],
+        "operationId": "LicenseProfile_Get",
+        "description": "Retrieves information about the view of a license profile.",
+        "parameters": [
+          {
+            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "name": "machineName",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "pattern": "[a-zA-Z0-9-_\\.]",
+            "minLength": 1,
+            "maxLength": 54,
+            "description": "The name of the hybrid machine."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/LicenseProfile"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Get Machine": {
+            "$ref": "./examples/licenseProfile/LicenseProfile_Get.json"
+          }
+        }
+      }
+    },
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{name}/assessPatches": {
       "post": {
         "tags": [
@@ -2265,6 +2473,123 @@
         "value"
       ],
       "description": "The List hybrid machine operation response."
+    },
+    "LicenseProfile": {
+      "type": "object",
+      "properties": {
+        "properties": {
+          "x-ms-client-flatten": true,
+          "$ref": "#/definitions/LicenseProfileProperties",
+          "description": "Hybrid Compute License Profile properties"
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "../../../../../common-types/resource-management/v3/types.json#/definitions/TrackedResource"
+        }
+      ],
+      "description": "Describes a license profile in a hybrid machine."
+    },
+    "LicenseProfileUpdate": {
+      "type": "object",
+      "properties": {
+        "properties": {
+          "x-ms-client-flatten": true,
+          "$ref": "#/definitions/LicenseProfileUpdateProperties",
+          "description": "Describes License Profile Update Properties."
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResourceUpdate"
+        }
+      ],
+      "description": "Describes a Machine Extension Update."
+    },
+    "EsuKey": {
+      "type": "object",
+      "properties": {
+        "sku": {
+          "type": "string",
+          "description": "SKU number."
+        },
+        "licenseStatus": {
+          "type": "string",
+          "enum":[
+            "1",
+            "0"
+          ],
+          "description": "The current status of the license profile key."
+        }
+      }
+    },
+    "EsuStatus": {
+      "type": "string",
+      "enum":[
+        "enrolled",
+        "unenrolled",
+        "ineligible"
+      ],
+      "description": "The ESU enrollment state."
+    },
+    "EsuStatusUpdateRecord": {
+      "type": "object",
+      "properties": {
+        "oldState": {
+          "$ref": "#/definitions/EsuStatus",
+          "description": "The old ESU enrollment state."
+        },
+        "newState": {
+          "$ref": "#/definitions/EsuStatus",
+          "description": "The new ESU enrollment state."
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The time that the state has been changed."
+        }
+      }
+    },
+    "LicenseProfileProperties": {
+      "type": "object",
+      "properties": {
+        "arcEsuEnrolled": {
+          "type": "string",
+          "enum": [
+            "true",
+            "false"
+          ],
+          "description": "Specifies wether the machine has enrolled in ESU or not."
+        },
+        "esuKeys": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EsuKey"
+          },
+          "description": "The list of ESU keys."
+        },
+        "esuHistory": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EsuStatusUpdateRecord"
+          },
+          "description": "The time records represent the state change of ESU enrollement."
+        }
+      },
+      "description": "Describes the properties of a License Profile."
+    },
+    "LicenseProfileUpdateProperties": {
+      "type": "object",
+      "properties": {
+        "esuKeys": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EsuKey"
+          },
+          "description": "The list of ESU keys."
+        }
+      },
+      "description": "Describes the Update properties of a License Profile."
     },
     "ResourceUpdate": {
       "type": "object",
