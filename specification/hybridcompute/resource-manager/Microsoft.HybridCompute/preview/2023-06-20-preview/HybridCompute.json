@@ -262,7 +262,7 @@
           "licenseProfile"
         ],
         "operationId": "LicenseProfile_CreateOrUpdate",
-        "description": "The operation to create or update a license profile. Please note some properties can be set only during the creation.",
+        "description": "The operation to create or update a license profile.",
         "parameters": [
           {
             "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter"
@@ -294,10 +294,22 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/LicenseProfile"
+          "202": {
+            "description": "Accepted",
+            "headers": {
+              "Location": {
+                "description": "The URL of the resource used to check the status of the asynchronous operation.",
+                "type": "string"
+              },
+              "Retry-After": {
+                "description": "The recommended number of seconds to wait before calling the URI specified in Azure-AsyncOperation.",
+                "type": "integer",
+                "format": "int32"
+              },
+              "Azure-AsyncOperation": {
+                "description": "The URI to poll for completion status.",
+                "type": "string"
+              }
             }
           },
           "default": {
@@ -350,10 +362,22 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/LicenseProfile"
+          "202": {
+            "description": "Accepted",
+            "headers": {
+              "Location": {
+                "description": "The URL of the resource used to check the status of the asynchronous operation.",
+                "type": "string"
+              },
+              "Retry-After": {
+                "description": "The recommended number of seconds to wait before calling the URI specified in Azure-AsyncOperation.",
+                "type": "integer",
+                "format": "int32"
+              },
+              "Azure-AsyncOperation": {
+                "description": "The URI to poll for completion status.",
+                "type": "string"
+              }
             }
           },
           "default": {
@@ -399,6 +423,24 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "202": {
+            "description": "Accepted",
+            "headers": {
+              "Location": {
+                "description": "The URL of the resource used to check the status of the asynchronous operation.",
+                "type": "string"
+              },
+              "Retry-After": {
+                "description": "The recommended number of seconds to wait before calling the URI specified in Azure-AsyncOperation.",
+                "type": "integer",
+                "format": "int32"
+              },
+              "Azure-AsyncOperation": {
+                "description": "The URI to poll for completion status.",
+                "type": "string"
+              }
+            }
           },
           "204": {
             "description": "No Content"
@@ -2406,7 +2448,8 @@
             "AVS",
             "HCI",
             "SCVMM",
-            "VMware"
+            "VMware",
+            "EPS"
           ],
           "x-ms-enum": {
             "name": "privateCloudKind",
@@ -2478,9 +2521,15 @@
       "type": "object",
       "properties": {
         "properties": {
-          "x-ms-client-flatten": true,
-          "$ref": "#/definitions/LicenseProfileProperties",
-          "description": "Hybrid Compute License Profile properties"
+          "type": "object",
+          "properties": {
+            "esuProfile": {
+              "x-ms-client-flatten": true,
+              "$ref": "#/definitions/EsuProfileProperties",
+              "description": "Hybrid Compute ESU Profile properties"
+            }
+          },
+          "description": "Describe the properties of a license profile"
         }
       },
       "allOf": [
@@ -2494,9 +2543,15 @@
       "type": "object",
       "properties": {
         "properties": {
-          "x-ms-client-flatten": true,
-          "$ref": "#/definitions/LicenseProfileUpdateProperties",
-          "description": "Describes License Profile Update Properties."
+          "type": "object",
+          "properties": {
+            "esuProfile": {
+              "x-ms-client-flatten": true,
+              "$ref": "#/definitions/EsuProfileUpdateProperties",
+              "description": "Hybrid Compute ESU Profile Update properties"
+            }
+          },
+          "description": "Describe the Update properties of a license profile"
         }
       },
       "allOf": [
@@ -2504,7 +2559,7 @@
           "$ref": "#/definitions/ResourceUpdate"
         }
       ],
-      "description": "Describes a Machine Extension Update."
+      "description": "Describes a License Profile Update."
     },
     "EsuKey": {
       "type": "object",
@@ -2515,15 +2570,11 @@
         },
         "licenseStatus": {
           "type": "string",
-          "enum":[
-            "1",
-            "0"
-          ],
           "description": "The current status of the license profile key."
         }
       }
     },
-    "EsuStatus": {
+    "arcEnabledEsuStatus": {
       "type": "string",
       "enum":[
         "enrolled",
@@ -2532,15 +2583,15 @@
       ],
       "description": "The ESU enrollment state."
     },
-    "EsuStatusUpdateRecord": {
+    "EsuEnrollmentUpdateRecord": {
       "type": "object",
       "properties": {
         "oldState": {
-          "$ref": "#/definitions/EsuStatus",
+          "$ref": "#/definitions/arcEnabledEsuStatus",
           "description": "The old ESU enrollment state."
         },
         "newState": {
-          "$ref": "#/definitions/EsuStatus",
+          "$ref": "#/definitions/arcEnabledEsuStatus",
           "description": "The new ESU enrollment state."
         },
         "date": {
@@ -2550,7 +2601,7 @@
         }
       }
     },
-    "LicenseProfileProperties": {
+    "EsuProfileProperties": {
       "type": "object",
       "properties": {
         "arcEsuEnrolled": {
@@ -2568,25 +2619,26 @@
           },
           "description": "The list of ESU keys."
         },
-        "esuHistory": {
+        "esuEnrollmentHistory": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/EsuStatusUpdateRecord"
+            "$ref": "#/definitions/EsuEnrollmentUpdateRecord"
           },
           "description": "The time records represent the state change of ESU enrollement."
         }
       },
       "description": "Describes the properties of a License Profile."
     },
-    "LicenseProfileUpdateProperties": {
+    "EsuProfileUpdateProperties": {
       "type": "object",
       "properties": {
-        "esuKeys": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/EsuKey"
-          },
-          "description": "The list of ESU keys."
+        "arcEsuEnrolled": {
+          "type": "string",
+          "enum": [
+            "true",
+            "false"
+          ],
+          "description": "Specifies wether the machine has enrolled in ESU or not."
         }
       },
       "description": "Describes the Update properties of a License Profile."
