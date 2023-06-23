@@ -256,7 +256,7 @@
         }
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/licenseProfile": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/licenseProfile/default": {
       "put": {
         "tags": [
           "licenseProfile"
@@ -294,6 +294,12 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/LicenseProfile"
+            }
+          },
           "202": {
             "description": "Accepted",
             "headers": {
@@ -319,6 +325,7 @@
             }
           }
         },
+        "x-ms-long-running-operation": true,
         "x-ms-examples": {
           "Create or Update a License Profile": {
             "$ref": "./examples/licenseProfile/LicenseProfile_CreateOrUpdate.json"
@@ -362,6 +369,12 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/LicenseProfile"
+            }
+          },
           "202": {
             "description": "Accepted",
             "headers": {
@@ -387,9 +400,76 @@
             }
           }
         },
+        "x-ms-long-running-operation": true,
         "x-ms-examples": {
           "Update a Machine": {
             "$ref": "./examples/licenseProfile/LicenseProfile_Update.json"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "licenseProfile"
+        ],
+        "operationId": "LicenseProfile_Get",
+        "description": "Retrieves information about the view of a license profile.",
+        "parameters": [
+          {
+            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "name": "machineName",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "pattern": "[a-zA-Z0-9-_\\.]",
+            "minLength": 1,
+            "maxLength": 54,
+            "description": "The name of the hybrid machine."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/LicenseProfile"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "headers": {
+              "Location": {
+                "description": "The URL of the resource used to check the status of the asynchronous operation.",
+                "type": "string"
+              },
+              "Retry-After": {
+                "description": "The recommended number of seconds to wait before calling the URI specified in Azure-AsyncOperation.",
+                "type": "integer",
+                "format": "int32"
+              },
+              "Azure-AsyncOperation": {
+                "description": "The URI to poll for completion status.",
+                "type": "string"
+              }
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation": true,
+        "x-ms-examples": {
+          "Get Machine": {
+            "$ref": "./examples/licenseProfile/LicenseProfile_Get.json"
           }
         }
       },
@@ -458,53 +538,6 @@
           }
         }
       },
-      "get": {
-        "tags": [
-          "licenseProfile"
-        ],
-        "operationId": "LicenseProfile_Get",
-        "description": "Retrieves information about the view of a license profile.",
-        "parameters": [
-          {
-            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter"
-          },
-          {
-            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter"
-          },
-          {
-            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter"
-          },
-          {
-            "name": "machineName",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "pattern": "[a-zA-Z0-9-_\\.]",
-            "minLength": 1,
-            "maxLength": 54,
-            "description": "The name of the hybrid machine."
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/LicenseProfile"
-            }
-          },
-          "default": {
-            "description": "Error response describing why the operation failed.",
-            "schema": {
-              "$ref": "../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse"
-            }
-          }
-        },
-        "x-ms-examples": {
-          "Get Machine": {
-            "$ref": "./examples/licenseProfile/LicenseProfile_Get.json"
-          }
-        }
-      }
     },
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{name}/assessPatches": {
       "post": {
@@ -2442,19 +2475,7 @@
           "$ref": "../../../../../common-types/resource-management/v3/types.json#/definitions/Identity"
         },
         "kind": {
-          "type": "string",
-          "description": "Indicates which kind of VM fabric the instance is an instance of, such as HCI or SCVMM etc.",
-          "enum": [
-            "AVS",
-            "HCI",
-            "SCVMM",
-            "VMware",
-            "EPS"
-          ],
-          "x-ms-enum": {
-            "name": "privateCloudKind",
-            "modelAsString": true
-          }
+          "$ref": "#/definitions/PrivateCloudKind"
         }
       },
       "allOf": [
@@ -2464,6 +2485,21 @@
       ],
       "description": "Describes a hybrid machine."
     },
+    "PrivateCloudKind": {
+      "type": "string",
+      "description": "Indicates which kind of VM fabric the instance is an instance of, such as HCI or SCVMM etc.",
+      "enum": [
+        "AVS",
+        "HCI",
+        "SCVMM",
+        "VMware",
+        "EPS"
+      ],
+      "x-ms-enum": {
+        "name": "privateCloudKind",
+        "modelAsString": true
+      }
+    },
     "MachineUpdate": {
       "type": "object",
       "properties": {
@@ -2471,18 +2507,7 @@
           "$ref": "../../../../../common-types/resource-management/v3/types.json#/definitions/Identity"
         },
         "kind": {
-          "type": "string",
-          "description": "Indicates which kind of VM fabric the instance is an instance of, such as HCI or SCVMM etc.",
-          "enum": [
-            "AVS",
-            "HCI",
-            "SCVMM",
-            "VMware"
-          ],
-          "x-ms-enum": {
-            "name": "privateCloudKind",
-            "modelAsString": true
-          }
+          "$ref": "#/definitions/PrivateCloudKind"
         },
         "properties": {
           "x-ms-client-flatten": true,
@@ -2529,7 +2554,7 @@
               "description": "Hybrid Compute ESU Profile properties"
             }
           },
-          "description": "Describe the properties of a license profile"
+          "description": "Describe the properties of a license profile."
         }
       },
       "allOf": [
@@ -2551,7 +2576,7 @@
               "description": "Hybrid Compute ESU Profile Update properties"
             }
           },
-          "description": "Describe the Update properties of a license profile"
+          "description": "Describe the Update properties of a license profile."
         }
       },
       "allOf": [
@@ -2579,7 +2604,8 @@
       "enum":[
         "enrolled",
         "unenrolled",
-        "ineligible"
+        "ineligible",
+        "unknown"
       ],
       "description": "The ESU enrollment state."
     },
@@ -2617,14 +2643,16 @@
           "items": {
             "$ref": "#/definitions/EsuKey"
           },
-          "description": "The list of ESU keys."
+          "description": "The list of ESU keys.",
+          "x-ms-identifiers": []
         },
         "esuEnrollmentHistory": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/EsuEnrollmentUpdateRecord"
           },
-          "description": "The time records represent the state change of ESU enrollement."
+          "description": "The time records represent the state change of ESU enrollment.",
+          "x-ms-identifiers": []
         }
       },
       "description": "Describes the properties of a License Profile."
