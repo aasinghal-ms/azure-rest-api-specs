@@ -256,12 +256,12 @@
         }
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/licenseProfile/default": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/licenseProfiles/default": {
       "put": {
         "tags": [
           "licenseProfile"
         ],
-        "operationId": "LicenseProfile_CreateOrUpdate",
+        "operationId": "LicenseProfiles_CreateOrUpdate",
         "description": "The operation to create or update a license profile.",
         "parameters": [
           {
@@ -295,7 +295,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Updated Resource",
             "schema": {
               "$ref": "#/definitions/LicenseProfile"
             }
@@ -339,7 +339,7 @@
         "tags": [
           "licenseProfile"
         ],
-        "operationId": "LicenseProfile_Update",
+        "operationId": "LicenseProfiles_Update",
         "description": "The operation to update a license profile.",
         "parameters": [
           {
@@ -414,7 +414,7 @@
         "tags": [
           "licenseProfile"
         ],
-        "operationId": "LicenseProfile_Get",
+        "operationId": "LicenseProfiles_Get",
         "description": "Retrieves information about the view of a license profile.",
         "parameters": [
           {
@@ -462,7 +462,7 @@
         "tags": [
           "licenseProfile"
         ],
-        "operationId": "LicenseProfile_Delete",
+        "operationId": "LicenseProfiles_Delete",
         "description": "The operation to delete a license profile.",
         "parameters": [
           {
@@ -523,7 +523,7 @@
             "$ref": "./examples/licenseProfile/LicenseProfile_Delete.json"
           }
         }
-      },
+      }
     },
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{name}/assessPatches": {
       "post": {
