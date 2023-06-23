@@ -256,12 +256,12 @@
         }
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/licenseProfiles/default": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/licenseProfile": {
       "put": {
         "tags": [
           "licenseProfile"
         ],
-        "operationId": "LicenseProfiles_CreateOrUpdate",
+        "operationId": "LicenseProfile_CreateOrUpdate",
         "description": "The operation to create or update a license profile.",
         "parameters": [
           {
@@ -339,7 +339,7 @@
         "tags": [
           "licenseProfile"
         ],
-        "operationId": "LicenseProfiles_Update",
+        "operationId": "LicenseProfile_Update",
         "description": "The operation to update a license profile.",
         "parameters": [
           {
@@ -414,7 +414,7 @@
         "tags": [
           "licenseProfile"
         ],
-        "operationId": "LicenseProfiles_Get",
+        "operationId": "LicenseProfile_Get",
         "description": "Retrieves information about the view of a license profile.",
         "parameters": [
           {
@@ -462,7 +462,7 @@
         "tags": [
           "licenseProfile"
         ],
-        "operationId": "LicenseProfiles_Delete",
+        "operationId": "LicenseProfile_Delete",
         "description": "The operation to delete a license profile.",
         "parameters": [
           {
