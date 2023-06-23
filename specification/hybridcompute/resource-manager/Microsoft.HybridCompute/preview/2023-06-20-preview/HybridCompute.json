@@ -300,8 +300,11 @@
               "$ref": "#/definitions/LicenseProfile"
             }
           },
-          "202": {
-            "description": "Accepted",
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/LicenseProfile"
+            },
             "headers": {
               "Location": {
                 "description": "The URL of the resource used to check the status of the asynchronous operation.",
@@ -441,24 +444,6 @@
               "$ref": "#/definitions/LicenseProfile"
             }
           },
-          "202": {
-            "description": "Accepted",
-            "headers": {
-              "Location": {
-                "description": "The URL of the resource used to check the status of the asynchronous operation.",
-                "type": "string"
-              },
-              "Retry-After": {
-                "description": "The recommended number of seconds to wait before calling the URI specified in Azure-AsyncOperation.",
-                "type": "integer",
-                "format": "int32"
-              },
-              "Azure-AsyncOperation": {
-                "description": "The URI to poll for completion status.",
-                "type": "string"
-              }
-            }
-          },
           "default": {
             "description": "Error response describing why the operation failed.",
             "schema": {
@@ -532,6 +517,7 @@
             }
           }
         },
+        "x-ms-long-running-operation": true,
         "x-ms-examples": {
           "Delete a Machine": {
             "$ref": "./examples/licenseProfile/LicenseProfile_Delete.json"
@@ -2552,6 +2538,11 @@
               "x-ms-client-flatten": true,
               "$ref": "#/definitions/EsuProfileProperties",
               "description": "Hybrid Compute ESU Profile properties"
+            },
+            "provisioningState": {
+              "readOnly": true,
+              "type": "string",
+              "description": "The provisioning state, which only appears in the response."
             }
           },
           "description": "Describe the properties of a license profile."
@@ -2620,7 +2611,7 @@
           "$ref": "#/definitions/arcEnabledEsuStatus",
           "description": "The new ESU enrollment state."
         },
-        "date": {
+        "time": {
           "type": "string",
           "format": "date-time",
           "description": "The time that the state has been changed."
