@@ -256,7 +256,7 @@
         }
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/licenseProfile": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/licenseProfile/default": {
       "put": {
         "tags": [
           "licenseProfile"
@@ -405,7 +405,7 @@
         },
         "x-ms-long-running-operation": true,
         "x-ms-examples": {
-          "Update a Machine": {
+          "Update a License Profile": {
             "$ref": "./examples/licenseProfile/LicenseProfile_Update.json"
           }
         }
@@ -453,7 +453,7 @@
         },
         "x-ms-long-running-operation": true,
         "x-ms-examples": {
-          "Get Machine": {
+          "Get License Profile": {
             "$ref": "./examples/licenseProfile/LicenseProfile_Get.json"
           }
         }
@@ -519,7 +519,7 @@
         },
         "x-ms-long-running-operation": true,
         "x-ms-examples": {
-          "Delete a Machine": {
+          "Delete a License Profile": {
             "$ref": "./examples/licenseProfile/LicenseProfile_Delete.json"
           }
         }
