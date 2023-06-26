@@ -256,12 +256,12 @@
         }
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/licenseProfile/default": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/licenseProfiles/default": {
       "put": {
         "tags": [
-          "licenseProfile"
+          "licenseProfiles"
         ],
-        "operationId": "LicenseProfile_CreateOrUpdate",
+        "operationId": "LicenseProfiles_CreateOrUpdate",
         "description": "The operation to create or update a license profile.",
         "parameters": [
           {
@@ -337,9 +337,9 @@
       },
       "patch": {
         "tags": [
-          "licenseProfile"
+          "licenseProfiles"
         ],
-        "operationId": "LicenseProfile_Update",
+        "operationId": "LicenseProfiles_Update",
         "description": "The operation to update a license profile.",
         "parameters": [
           {
@@ -412,9 +412,9 @@
       },
       "get": {
         "tags": [
-          "licenseProfile"
+          "licenseProfiles"
         ],
-        "operationId": "LicenseProfile_Get",
+        "operationId": "LicenseProfiles_Get",
         "description": "Retrieves information about the view of a license profile.",
         "parameters": [
           {
@@ -459,9 +459,9 @@
       },
       "delete": {
         "tags": [
-          "licenseProfile"
+          "licenseProfiles"
         ],
-        "operationId": "LicenseProfile_Delete",
+        "operationId": "LicenseProfiles_Delete",
         "description": "The operation to delete a license profile.",
         "parameters": [
           {
@@ -520,6 +520,58 @@
         "x-ms-examples": {
           "Delete a License Profile": {
             "$ref": "./examples/licenseProfile/LicenseProfile_Delete.json"
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/licenseProfiles": {
+      "get": {
+        "tags": [
+          "licenseProfiles"
+        ],
+        "operationId": "licenseProfiles_List",
+        "description": "The operation to get all license profiles of a non-Azure machine",
+        "parameters": [
+          {
+            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "name": "machineName",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "pattern": "[a-zA-Z0-9-_\\.]",
+            "minLength": 1,
+            "maxLength": 54,
+            "description": "The name of the machine."
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/LicenseProfilesListResult"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        },
+        "x-ms-examples": {
+          "GET all Machine Extensions": {
+            "$ref": "./examples/licenseProfile_List.json"
           }
         }
       }
@@ -2575,6 +2627,26 @@
         }
       ],
       "description": "Describes a License Profile Update."
+    },
+    "LicenseProfilesListResult": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LicenseProfile"
+          },
+          "description": "The list of license profiles."
+        },
+        "nextLink": {
+          "type": "string",
+          "description": "The URI to fetch the next page of Machines. Call ListNext() with this URI to fetch the next page of license profile."
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "description": "The List hybrid machine operation response."
     },
     "EsuKey": {
       "type": "object",
