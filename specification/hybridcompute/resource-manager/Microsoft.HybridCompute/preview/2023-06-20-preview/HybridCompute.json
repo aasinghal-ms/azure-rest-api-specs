@@ -2653,6 +2653,10 @@
         "ineligible",
         "unknown"
       ],
+      "x-ms-enum": {
+        "name": "ArcEnabledEsuStatus",
+        "modelAsString": true
+      },
       "description": "The ESU enrollment state."
     },
     "EsuEnrollmentUpdateRecord": {
@@ -2677,12 +2681,7 @@
       "type": "object",
       "properties": {
         "arcEsuEnrolled": {
-          "type": "string",
-          "enum": [
-            "true",
-            "false"
-          ],
-          "description": "Specifies wether the machine has enrolled in ESU or not."
+          "$ref": "#/definitions/ArcEsuEnrolled"
         },
         "esuKeys": {
           "type": "array",
@@ -2703,16 +2702,23 @@
       },
       "description": "Describes the properties of a License Profile."
     },
+    "ArcEsuEnrolled": {
+      "type": "string",
+      "enum": [
+        "true",
+        "false"
+      ],
+      "x-ms-enum": {
+        "name": "ArcEsuEnrolled",
+        "modelAsString": true
+      },
+      "description": "Specifies wether the machine has enrolled in ESU or not."
+    },
     "EsuProfileUpdateProperties": {
       "type": "object",
       "properties": {
         "arcEsuEnrolled": {
-          "type": "string",
-          "enum": [
-            "true",
-            "false"
-          ],
-          "description": "Specifies wether the machine has enrolled in ESU or not."
+          "$ref": "#/definitions/ArcEsuEnrolled"
         }
       },
       "description": "Describes the Update properties of a License Profile."
