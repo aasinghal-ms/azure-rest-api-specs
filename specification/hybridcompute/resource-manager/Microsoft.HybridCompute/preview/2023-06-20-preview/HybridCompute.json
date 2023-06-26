@@ -414,7 +414,7 @@
         "tags": [
           "licenseProfile"
         ],
-        "operationId": "LicenseProfile_GetLicenseProfile",
+        "operationId": "LicenseProfile_Get",
         "description": "Retrieves information about the view of a license profile.",
         "parameters": [
           {
@@ -451,7 +451,6 @@
             }
           }
         },
-        "x-ms-long-running-operation": true,
         "x-ms-examples": {
           "Get License Profile": {
             "$ref": "./examples/licenseProfile/LicenseProfile_Get.json"
