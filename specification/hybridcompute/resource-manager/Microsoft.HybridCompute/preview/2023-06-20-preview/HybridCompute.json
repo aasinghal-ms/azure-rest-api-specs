@@ -256,7 +256,7 @@
         }
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/licenseProfiles/default": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/licenseProfiles/{licenseProfileName}": {
       "put": {
         "tags": [
           "licenseProfiles"
@@ -274,14 +274,10 @@
             "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter"
           },
           {
-            "name": "machineName",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "pattern": "[a-zA-Z0-9-_\\.]",
-            "minLength": 1,
-            "maxLength": 54,
-            "description": "The name of the hybrid machine."
+            "$ref": "#/parameters/machineNameParameter"
+          },
+          {
+            "$ref": "#/parameters/licenseProfileNameParameter"
           },
           {
             "name": "parameters",
@@ -352,14 +348,10 @@
             "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter"
           },
           {
-            "name": "machineName",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "pattern": "[a-zA-Z0-9-_\\.]",
-            "minLength": 1,
-            "maxLength": 54,
-            "description": "The name of the hybrid machine."
+            "$ref": "#/parameters/machineNameParameter"
+          },
+          {
+            "$ref": "#/parameters/licenseProfileNameParameter"
           },
           {
             "name": "parameters",
@@ -427,14 +419,10 @@
             "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter"
           },
           {
-            "name": "machineName",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "pattern": "[a-zA-Z0-9-_\\.]",
-            "minLength": 1,
-            "maxLength": 54,
-            "description": "The name of the hybrid machine."
+            "$ref": "#/parameters/machineNameParameter"
+          },
+          {
+            "$ref": "#/parameters/licenseProfileNameParameter"
           }
         ],
         "responses": {
@@ -474,14 +462,10 @@
             "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter"
           },
           {
-            "name": "machineName",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "pattern": "[a-zA-Z0-9-_\\.]",
-            "minLength": 1,
-            "maxLength": 54,
-            "description": "The name of the hybrid machine."
+            "$ref": "#/parameters/machineNameParameter"
+          },
+          {
+            "$ref": "#/parameters/licenseProfileNameParameter"
           }
         ],
         "responses": {
@@ -3778,6 +3762,21 @@
       "pattern": "[a-zA-Z0-9-_\\.]",
       "description": "The name of the hybrid machine.",
       "x-ms-parameter-location": "method"
+    },
+    "licenseProfileNameParameter": {
+      "name": "licenseProfileName",
+      "in": "path",
+      "description": "The name of the license profile.",
+      "required": true,
+      "type": "string",
+      "enum": [
+        "default"
+      ],
+      "x-ms-parameter-location": "method",
+      "x-ms-enum": {
+        "name": "LicenseProfileName",
+        "modelAsString": false
+      }
     }
   }
 }
