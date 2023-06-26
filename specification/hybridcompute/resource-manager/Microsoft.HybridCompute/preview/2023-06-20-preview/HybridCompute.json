@@ -414,7 +414,7 @@
         "tags": [
           "licenseProfile"
         ],
-        "operationId": "LicenseProfile_Get",
+        "operationId": "LicenseProfile_GetLicenseProfile",
         "description": "Retrieves information about the view of a license profile.",
         "parameters": [
           {
