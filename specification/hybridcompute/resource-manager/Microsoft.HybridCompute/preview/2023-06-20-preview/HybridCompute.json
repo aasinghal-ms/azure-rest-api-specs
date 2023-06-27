@@ -555,7 +555,7 @@
         },
         "x-ms-examples": {
           "GET all Machine Extensions": {
-            "$ref": "./examples/licenseProfile_List.json"
+            "$ref": "./examples/LicenseProfile_List.json"
           }
         }
       }
