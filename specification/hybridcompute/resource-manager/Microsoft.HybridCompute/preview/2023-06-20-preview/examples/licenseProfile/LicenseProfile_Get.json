@@ -3,14 +3,15 @@
       "subscriptionId": "{subscriptionId}",
       "resourceGroupName": "myResourceGroup",
       "machineName": "myMachine",
+      "licenseProfileName": "default",
       "api-version": "2023-06-20-preview"
     },
     "responses": {
       "200": {
         "body": {
-            "id": "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.HybridCompute/Machines/myMachine/licenseProfile/default",
-            "name": "licenseProfile",
-            "type": "Microsoft.HybridCompute/machines/licenseProfile",
+            "id": "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.HybridCompute/Machines/myMachine/licenseProfiles/default",
+            "name": "default",
+            "type": "Microsoft.HybridCompute/machines/licenseProfiles",
             "location": "eastus2",
             "tags": {
                 "tag1": "value1",
